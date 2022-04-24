@@ -23,6 +23,7 @@ function App() {
                     <Route path={'/books/create'} element={<CreateBook/>}></Route>
                     <Route path={'/books'} element={<Books/>}></Route>
                     <Route path={'/categories'} element={<Categories/>}></Route>
+                    <Route path={'/*'} element={<Books/>}></Route>
                 </Routes>
             </div>
         </Router>
