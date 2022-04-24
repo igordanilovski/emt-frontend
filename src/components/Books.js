@@ -39,7 +39,7 @@ class Books extends Component {
                                 <td key={book.availableCopies}>{book.availableCopies}</td>
                                 <td>
                                     <button>Edit</button>
-                                    <button>Delete</button>
+                                    <button onClick={() => this.deleteABook(book.id)}>Delete</button>
                                     <button onClick={() => this.rentABook(book.id)}>Rent</button>
                                 </td>
                             </tr>
@@ -75,6 +75,22 @@ class Books extends Component {
         )
         this.componentDidMount();
     }
+
+    deleteABook(id) {
+        this.setState({
+            loading: true,
+        })
+        BookService.deleteABook(id).then(
+            BookService.getBooks().then((data) => {
+                this.books = data.data
+                this.setState({
+                    loading: false,
+                })
+            })
+        )
+        this.componentDidMount();
+    }
+
 }
 
 export default Books;

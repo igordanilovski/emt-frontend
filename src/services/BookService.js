@@ -9,6 +9,10 @@ const BookService = {
         return axios.put(`/books/${id}/rent`);
     },
 
+    deleteABook: (id) => {
+        return axios.delete(`/books/${id}`);
+    },
+
     createBook: (name, category, authorId, availableCopies) => {
         return axios.post("/books/", {
             "name": name,
