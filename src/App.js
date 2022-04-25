@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Books from "./components/Books";
 import Categories from "./components/Categories";
 import CreateBook from "./components/CreateBook";
+import EditBook from "./components/EditBook";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 </nav>
                 <Routes>
                     <Route path={'/books/create'} element={<CreateBook/>}></Route>
+                    <Route path={'/books/edit/:id'} element={<EditBook/>}></Route>
                     <Route path={'/books'} element={<Books/>}></Route>
                     <Route path={'/categories'} element={<Categories/>}></Route>
                     <Route path={'/*'} element={<Books/>}></Route>

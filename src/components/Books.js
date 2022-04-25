@@ -38,7 +38,7 @@ class Books extends Component {
                                 <td key={book.author.id}>{book.author.firstName}</td>
                                 <td key={book.availableCopies}>{book.availableCopies}</td>
                                 <td>
-                                    <button>Edit</button>
+                                    <a href={`/books/edit/${book.id}`}>Edit</a>
                                     <button onClick={() => this.deleteABook(book.id)}>Delete</button>
                                     <button onClick={() => this.rentABook(book.id)}>Rent</button>
                                 </td>
@@ -71,7 +71,7 @@ class Books extends Component {
                 this.setState({
                     loading: false,
                 })
-            })
+            }),
         )
         this.componentDidMount();
     }

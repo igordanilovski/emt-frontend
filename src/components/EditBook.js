@@ -11,25 +11,37 @@ const dataFields = {
     bookAvailableCopies: 0,
 }
 
-class CreateBook extends Component {
+let id = parseInt(window.location.href.split("/").pop());
+
+class EditBook extends Component {
     authors = [];
     categories = [];
+
 
     constructor(props) {
         super(props);
         this.state = {
             authors: [], loading: true,
         }
+        BookService.getBookById(id).then((data) => {
+            document.getElementById("name").value = data.data.name;
+            document.getElementById("availableCopies").value = data.data.availableCopies;
+            dataFields.bookName = data.data.name;
+            dataFields.bookAuthorId = data.data.author.id;
+            dataFields.bookCategory = data.data.category;
+            dataFields.bookAvailableCopies = data.data.availableCopies;
+        });
     }
 
     handleSubmit(event) {
-        bookService.createBook(
+        bookService.editBook(
+            id,
             dataFields.bookName,
             dataFields.bookCategory,
             dataFields.bookAuthorId,
             dataFields.bookAvailableCopies
         ).then(() => {
-            alert("Successfully added!");
+            alert("Successfully edited!");
         })
         event.preventDefault();
     }
@@ -94,6 +106,9 @@ class CreateBook extends Component {
             this.setState({
                 loading: false, categories: this.categories
             })
+            this.categories.forEach(category => {
+                console.log(category);
+            })
         });
 
         AuthorService.getAuthors().then((data) => {
@@ -121,4 +136,4 @@ class CreateBook extends Component {
     }
 }
 
-export default CreateBook;
+export default EditBook;
